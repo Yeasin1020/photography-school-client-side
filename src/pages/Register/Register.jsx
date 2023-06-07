@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
 	const {createUser} = useContext(AuthContext);
@@ -27,24 +28,41 @@ const Register = () => {
 		SetMatch('')
 		
 		createUser(data.email, data.password, data.name, data.photo)
-		.then(result => {
-			const loggedUser = result.user;
-			console.log(loggedUser);
-		})
-		.then(error => console.log(error))
-		console.log(data)
+		.then((result) => {
+			const createdUser = result.user;
+			console.log(createdUser);
+			if (createUser) {
+			  Swal.fire({
+				title: "Successfully signUp",
+				text: "Great",
+				icon: "success",
+				showCancelButton: false,
+				confirmButtonColor: "#3085d6",
+				
+				confirmButtonText: "Continue",
+			  }).then((result) => {
+				if (result.isConfirmed) {
+				  
+				  window.location.assign("/");
+				}
+			  });
+			}
+		  })
+		  .catch((error) => {
+			console.log(error.massage);
+		  });
 	
 	
 	};
 		
   return (
-    <div className="mt-10 mb-10 flex mx-auto justify-center items-center">
+    <div className="mt-10 mb-10 text-white flex mx-auto justify-center items-center">
       <Card color="transparent" shadow={false}>
        <div className="text-center">
-	   <Typography variant="h4" color="blue-gray">
+	   <Typography variant="h4" color="white">
           Sign Up
         </Typography>
-        <Typography color="gray" className="mt-1 font-normal">
+        <Typography color="white" className="mt-1 font-normal">
           Enter your details to register.
         </Typography>
 	   </div>
@@ -68,28 +86,11 @@ const Register = () => {
             <Input type="photoUrl" size="lg" {...register("photo", { required: true })} label="PhotoUrl" />
 			{errors.photo && <span className="text-red-500">This field is required</span>}
           </div>
-          <Checkbox
-            label={
-              <Typography
-                variant="small"
-                color="gray"
-                className="flex items-center font-normal"
-              >
-                I agree the
-                <a
-                  href="#"
-                  className="font-medium transition-colors hover:text-blue-500"
-                >
-                  &nbsp;Terms and Conditions
-                </a>
-              </Typography>
-            }
-            containerProps={{ className: "-ml-2.5" }}
-          />
+         
           <Button type="submit" className="mt-6" fullWidth>
             Register
           </Button>
-          <Typography color="gray" className="mt-4 text-center font-normal">
+          <Typography color="white" className="mt-4 text-center font-normal">
             Already have an account?
             <Link
 			to='/logIn'

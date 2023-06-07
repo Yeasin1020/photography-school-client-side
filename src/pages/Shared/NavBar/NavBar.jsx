@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { Avatar } from "@material-tailwind/react";
+
+import { Button } from "@material-tailwind/react";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => console.log(error));
+  };
   return (
-    <div className="navbar bg-base-100">
+    <div
+      
+      className="navbar bg-base-100"
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -27,7 +40,7 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <a>Instructors</a>
@@ -40,7 +53,7 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a className="ml-5 font-bold normal-case text-xl">Photography School</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -59,7 +72,29 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/logIn" className="btn">LogIn</Link>
+        {user ? (
+          <>
+            <li>
+              <Avatar
+                title={user?.photoURL}
+                className=" h-10 w-10 mr-5 rounded-2xl"
+                img={user?.displayName}
+                rounded={true}
+              />
+            </li>
+            <li className=" list-none">
+              <Button onClick={handleLogOut} className=" bg-red-600" fullWidth>
+                LogOut
+              </Button>
+            </li>
+          </>
+        ) : (
+          <li className=" list-none">
+            <Button className="" fullWidth>
+              <Link to="/logIn">Login</Link>
+            </Button>
+          </li>
+        )}
       </div>
     </div>
   );

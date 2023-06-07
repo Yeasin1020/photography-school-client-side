@@ -1,10 +1,14 @@
 import { Button, Input } from "@material-tailwind/react";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
 	const {signIn, googleSignIn} = useContext(AuthContext)
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = useLocation.state?.from?.pathname || "/" ;
 
 	const handleLogin = event => {
 		event.preventDefault();
@@ -14,12 +18,43 @@ const LogIn = () => {
 		console.log(email, password)
 		signIn(email, password)
 		.then(result => {
-			const user = result.user;
-			console.log(user);
-		})
+            const loggedUser = result.user;
+            console.log(loggedUser)
+            if(loggedUser){
+              Swal.fire({
+                title: 'Successfully logIn with Email Password!',
+                text: 'Welcome to our Toys Cars Shop',
+                icon: 'success',
+                confirmButtonText: 'Oky'
+              })
+            }
+            navigate(from, {replace: true})
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+		const handleGoogleLogIn = () => {
+			googleSignIn()
+			  .then((result) => {
+				const user = result.user;
+				console.log(user)
+				if(user){
+				  Swal.fire({
+					title: 'Successfully logIn with gmail!',
+					text: 'Do you want to continue',
+					icon: 'success',
+					confirmButtonText: 'Oky'
+				  })
+				}
+				navigate(from, { replace: true });
+			  })
+			  .catch((error) => {
+				console.log("error", error.message);
+			  });
+		  };
 	}
   return (
-    <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
+    <section className="h-screen flex flex-col text-white md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
       <div className="md:w-1/3 max-w-sm">
         <img
           src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
