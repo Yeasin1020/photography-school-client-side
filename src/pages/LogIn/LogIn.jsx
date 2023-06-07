@@ -1,14 +1,22 @@
 import { Button, Input } from "@material-tailwind/react";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const LogIn = () => {
+	const {signIn, googleSignIn} = useContext(AuthContext)
+
 	const handleLogin = event => {
 		event.preventDefault();
 		const form = event.target;
 		const email = form.email.value;
 		const password = form.password.value;
 		console.log(email, password)
+		signIn(email, password)
+		.then(result => {
+			const user = result.user;
+			console.log(user);
+		})
 	}
   return (
     <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
