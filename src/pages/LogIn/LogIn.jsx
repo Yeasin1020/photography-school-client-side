@@ -3,6 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
+	const handleLogin = event => {
+		event.preventDefault();
+		const form = event.target;
+		const email = form.email.value;
+		const password = form.password.value;
+		console.log(email, password)
+	}
   return (
     <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
       <div className="md:w-1/3 max-w-sm">
@@ -11,7 +18,7 @@ const LogIn = () => {
           alt="Sample image"
         />
       </div>
-      <div className="md:w-1/3 max-w-sm">
+      <form onSubmit={handleLogin} className="md:w-1/3 max-w-sm">
         <div className="text-center md:text-left">
           <label className="mr-1">Sign in with</label>
           <button
@@ -47,10 +54,10 @@ const LogIn = () => {
           </p>
         </div>
         <div className="mb-4">
-          {" "}
-          <Input size="lg" label="Email" />
+        
+          <Input name="email" size="lg" label="Email" />
         </div>
-        <Input size="lg" label="Password" />
+        <Input name="password" size="lg" label="Password" />
         <div className="mt-4 flex justify-between font-semibold text-sm">
           <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
             <input className="mr-1" type="checkbox" />
@@ -62,7 +69,7 @@ const LogIn = () => {
           ></a>
         </div>
         <div className="text-center md:text-left">
-          <Button className="mt-6" fullWidth>
+          <Button type="submit" className="mt-6" fullWidth>
             Login
           </Button>
         </div>
@@ -76,7 +83,7 @@ const LogIn = () => {
             Register
           </Link>
         </div>
-      </div>
+      </form>
     </section>
   );
 };
