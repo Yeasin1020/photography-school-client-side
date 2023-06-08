@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import {ImSpinner3} from 'react-icons/im'
 
 import {
   Card,
@@ -13,7 +14,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-	const {createUser} = useContext(AuthContext);
+	const {createUser, loading, setLoading} = useContext(AuthContext);
 
 
 	const [match, SetMatch] = useState([]);
@@ -49,7 +50,9 @@ const Register = () => {
 			}
 		  })
 		  .catch((error) => {
+			setLoading(false)
 			console.log(error.massage);
+			
 		  });
 	
 	
@@ -87,8 +90,9 @@ const Register = () => {
 			{errors.photo && <span className="text-red-500">This field is required</span>}
           </div>
          
-          <Button type="submit" className="mt-6" fullWidth>
-            Register
+          <Button type="submit" className="mt-6 cursor-pointer" fullWidth>
+			 {loading ? <ImSpinner3 className="m-auto animate-spin" size={24}></ImSpinner3>:'Register'}
+            
           </Button>
           <Typography color="white" className="mt-4 text-center font-normal">
             Already have an account?

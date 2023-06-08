@@ -6,6 +6,7 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import LogIn from "../pages/LogIn/LogIn";
 import Register from "../pages/Register/Register";
+import Error from "../pages/Error/Error";
 
 export  const router = createBrowserRouter([
 	{
@@ -26,4 +27,8 @@ export  const router = createBrowserRouter([
 		}
 	  ]
 	},
+	{
+		path: "*",
+		element: <Error></Error>,
+	  },
   ]);
