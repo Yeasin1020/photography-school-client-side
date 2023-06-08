@@ -49,7 +49,8 @@ const Register = () => {
 			  });
 			}
 		  })
-		  .catch((error) => {
+		  
+		  .then((error) => {
 			setLoading(false)
 			console.log(error.massage);
 			

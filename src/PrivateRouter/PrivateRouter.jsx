@@ -2,7 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 // import { Spinner } from "flowbite-react";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Spinner } from "@material-tailwind/react";
+import Loader from "../pages/Shared/Loader";
 
 
 const PrivateRoute = ({ children }) => {
@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
   console.log(location);
   if (loading) {
     return (
-		<Spinner />
+		<Loader></Loader>
     );
   }
   if (user) {
