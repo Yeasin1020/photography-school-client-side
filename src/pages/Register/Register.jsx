@@ -14,7 +14,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-	const {createUser, loading, setLoading} = useContext(AuthContext);
+	const {createUser, loading, setLoading, googleSignIn} = useContext(AuthContext);
 
 
 	const [match, SetMatch] = useState([]);
@@ -43,18 +43,20 @@ const Register = () => {
 				confirmButtonText: "Continue",
 			  }).then((result) => {
 				if (result.isConfirmed) {
-				  
+				  saveUser(result.user)
 				  window.location.assign("/");
 				}
 			  });
 			}
 		  })
-		  
+
 		  .then((error) => {
 			setLoading(false)
 			console.log(error.massage);
 			
 		  });
+
+
 	
 	
 	};

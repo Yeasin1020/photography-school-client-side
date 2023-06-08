@@ -18,7 +18,7 @@ const NavBar = () => {
       className="navbar bg-base-100 shadow-sm"
     >
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown z-10">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -48,9 +48,11 @@ const NavBar = () => {
             <li>
               <a>Classes</a>
             </li>
-            <li>
-              <a>Dashboard</a>
-            </li>
+           {user? 
+             <li>
+             <a>Dashboard</a>
+           </li>: '' 
+          }
           </ul>
         </div>
         <a className="ml-5 font-bold normal-case text-xl">Photography School</a>
@@ -66,9 +68,11 @@ const NavBar = () => {
           <li>
             <a>Classes</a>
           </li>
+          {user ? 
           <li>
-            <a>Dashboard</a>
-          </li>
+          <Link>Dashboard</Link>
+        </li>: ''  
+        }
         </ul>
       </div>
       <div className="navbar-end">
@@ -76,9 +80,9 @@ const NavBar = () => {
           <>
             <li>
               <Avatar
-                title={user?.photoURL}
+                title={user?.displayName}
                 className=" h-10 w-10 mr-5 rounded-2xl"
-                img={user?.displayName}
+                img={user?.photoURL}
                 rounded={true}
               />
             </li>
