@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 import Error from "../pages/Error/Error";
 import ClassDetails from "../pages/classDetails/ClassDetails";
 import PrivateRoute from "../PrivateRouter/PrivateRouter";
+import DashboardLayout from "../pages/DashboardLayout/DashboardLayout";
 
 export  const router = createBrowserRouter([
 	{
@@ -30,11 +31,17 @@ export  const router = createBrowserRouter([
 		{
 			path: '/class/:id',
 			element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>
-		}
+		},
+		
 	  ]
 	},
 	{
 		path: "*",
 		element: <Error></Error>,
 	  },
+	  {
+		path: '/dashboard',
+		element: <DashboardLayout></DashboardLayout>,
+		children: [{path: '/dashboard/add-class', element:<p>Add room form</p>}]
+	}
   ]);

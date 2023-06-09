@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Avatar } from "@material-tailwind/react";
-
+import { IconName } from "react-icons/bi";
 import { Button } from "@material-tailwind/react";
 
 const NavBar = () => {
@@ -15,7 +15,7 @@ const NavBar = () => {
   return (
     <div
       
-      className="navbar bg-base-100 shadow-sm"
+      className="navbar bg-base-100 shadow-sm "
     >
       <div className="navbar-start">
         <div className="dropdown z-10">
@@ -50,7 +50,7 @@ const NavBar = () => {
             </li>
            {user? 
              <li>
-             <a>Dashboard</a>
+             <Link>Dashboard</Link>
            </li>: '' 
           }
           </ul>
@@ -70,7 +70,7 @@ const NavBar = () => {
           </li>
           {user ? 
           <li>
-          <Link>Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </li>: ''  
         }
         </ul>
