@@ -10,6 +10,7 @@ import Error from "../pages/Error/Error";
 import ClassDetails from "../pages/classDetails/ClassDetails";
 import PrivateRoute from "../PrivateRouter/PrivateRouter";
 import DashboardLayout from "../pages/DashboardLayout/DashboardLayout";
+import AddClass from "../pages/AddClass/AddClass";
 
 export  const router = createBrowserRouter([
 	{
@@ -29,8 +30,10 @@ export  const router = createBrowserRouter([
 			element: <Register></Register>
 		},
 		{
-			path: '/class/:id',
-			element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>
+			path: '/classDetails/:id',
+			element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>,
+			loader: ({ params }) =>
+          fetch(`http://localhost:5000/classDetails/${params.id}`),
 		},
 		
 	  ]
@@ -42,6 +45,6 @@ export  const router = createBrowserRouter([
 	  {
 		path: '/dashboard',
 		element: <DashboardLayout></DashboardLayout>,
-		children: [{path: '/dashboard/add-class', element:<p>Add room form</p>}]
+		children: [{path: '/dashboard/add-class', element:<AddClass></AddClass>}]
 	}
   ]);

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
-import { FcCdLogo, FcDvdLogo, FcSettings } from "react-icons/fc";
+import { FcDvdLogo, FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { AuthContext } from "../../Provider/AuthProvider";
 
@@ -12,6 +12,7 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
+import { DiTypo3 } from "react-icons/di";
 const Sidebar = () => {
   const data = [
     {
@@ -48,7 +49,7 @@ const Sidebar = () => {
       <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
-            <FcCdLogo />
+          
           </div>
         </div>
 
@@ -69,7 +70,7 @@ const Sidebar = () => {
           {/* Branding & Profile Info */}
           <div>
             <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
-              <FcDvdLogo />
+           <Link to="/"> <DiTypo3 className="w-10 h-10"></DiTypo3></Link>
             </div>
             <div className="flex flex-col items-center mt-6 -mx-2">
               <Link to="/dashboard">

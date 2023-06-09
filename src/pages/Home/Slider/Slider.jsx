@@ -7,6 +7,7 @@ import { Pagination } from 'swiper';
 
 
 const Slider = () => {
+  
 	const pagination = {
 		clickable: true,
 		renderBullet: function (index, className) {

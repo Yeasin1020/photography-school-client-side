@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { Avatar } from "@material-tailwind/react";
-import { IconName } from "react-icons/bi";
+import { DiTypo3 } from "react-icons/di";
 import { Button } from "@material-tailwind/react";
+import { Avatar } from "@material-tailwind/react";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -20,20 +20,7 @@ const NavBar = () => {
       <div className="navbar-start">
         <div className="dropdown z-10">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+           
           </label>
           <ul
             tabIndex={0}
@@ -55,6 +42,7 @@ const NavBar = () => {
           }
           </ul>
         </div>
+        <DiTypo3 className="w-10 h-10"></DiTypo3>
         <a className="ml-5 font-bold normal-case text-xl">Photography School</a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -78,14 +66,15 @@ const NavBar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <li>
+            <>
               <Avatar
-                title={user?.displayName}
-                className=" h-10 w-10 mr-5 rounded-2xl"
-                img={user?.photoURL}
-                rounded={true}
-              />
-            </li>
+              title={user?.displayName}
+              className=" h-10 w-10 mr-5 rounded-2xl"
+              src={user?.photoURL}
+              alt="avatar"
+              rounded={true}
+               />
+            </>
             <li className=" list-none">
               <Button onClick={handleLogOut} className=" bg-red-600" fullWidth>
                 LogOut

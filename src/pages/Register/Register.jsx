@@ -50,7 +50,7 @@ const Register = () => {
 			}
 		  })
 
-		  .then((error) => {
+		  .catch((error) => {
 			setLoading(false)
 			console.log(error.massage);
 			

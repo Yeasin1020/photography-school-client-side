@@ -4,9 +4,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { saveUser } from "../../api/auth";
+import { ImSpinner3 } from "react-icons/im";
 
 const LogIn = () => {
-	const {signIn, googleSignIn} = useContext(AuthContext)
+	const {signIn, googleSignIn, loading, setLoading} = useContext(AuthContext)
 	const navigate = useNavigate();
 	const location = useLocation();
 	const from = useLocation.state?.from?.pathname || "/" ;
@@ -32,6 +33,9 @@ const LogIn = () => {
             navigate(from, {replace: true})
         })
         .catch(error=>{
+         if(error){
+          setLoading(false)
+         }
             console.log(error)
         })
 		
@@ -119,8 +123,10 @@ const LogIn = () => {
           ></a>
         </div>
         <div className="text-center md:text-left">
-          <Button type="submit" className="mt-6" fullWidth>
-            Login
+          
+          <Button type="submit" className="mt-6 cursor-pointer" fullWidth>
+			 {loading ? <ImSpinner3 className="m-auto animate-spin" size={24}></ImSpinner3>:'Login'}
+            
           </Button>
         </div>
         <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">

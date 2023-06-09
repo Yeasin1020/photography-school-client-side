@@ -26,7 +26,7 @@ const PhotographyPopularCard = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("class.json")
+    fetch("http://localhost:5000/allClass")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -38,8 +38,8 @@ const PhotographyPopularCard = () => {
   }
   return (
     <div className="cursor-pointer  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {classes.map((c, index) => (
-        <Link to={`/class/${1}`} key={c.id} className="cursor-pointer group">
+      {classes.map((c) => (
+        <Link to={`/classDetails/${c._id}`} key={c._id} className="cursor-pointer group">
           <Card className="w-full max-w-[26rem] shadow-lg">
             <CardHeader floated={false} color="blue-gray">
               <img
