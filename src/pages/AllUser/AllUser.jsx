@@ -34,6 +34,26 @@ const AllUser = () => {
       });
   };
 
+   //handle Make instructor
+
+   const handleMakeInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: `${user.name} is now instructor`,
+            confirmButtonColor: "#3085d6",
+            showCancelButton: false,
+            confirmButtonText: "Ok",
+          });
+        }
+      });
+  };
+
   return (
     <div className="text-white">
       <div className="overflow-x-auto">
@@ -79,17 +99,29 @@ const AllUser = () => {
                 </td>
                 <td>{user.email}</td>
 				
-                <td>{
-					user.role === "admin" ? "Admin" : "Student"
-				}</td>
+                <td>
+				{
+					user.role === "admin" ? "Admin" : user.role === "instructor" ? "Instructor" : "Student"
+				}
+				</td>
                 <th className="flex">
 				{user.role === "admin" ? (
-                  <Button className="mt-4" disabled fullWidth>
+                  <Button className="mt-4 ml-4" disabled fullWidth>
                     <Link>Admin</Link>
                   </Button>
 				):(
                   <Button onClick={() => handleMakeAdmin(user)} className="ml-3 mt-4" fullWidth>
                     <Link>Make Admin</Link>
+                  </Button>
+				    )}
+
+				{user.role === "instructor" ? (
+                  <Button className="mt-4 ml-4" disabled fullWidth>
+                    <Link>instructor</Link>
+                  </Button>
+				):(
+                  <Button onClick={() => handleMakeInstructor(user)} className="ml-3 mt-4" fullWidth>
+                    <Link>MakeInstructor</Link>
                   </Button>
 				    )}
                 </th>
