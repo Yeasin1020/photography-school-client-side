@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AddClassForm from '../Forms/AddClassForm';
+import { imageUpload } from '../../api/utils';
+import { AuthContext } from '../../Provider/AuthProvider';
 
-const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const AddClass = () => {
-	
+	const {user} = useContext(AuthContext)
 	
 	const onSubmit = data => {
-		const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${img_hosting_token}`
-
-
+		
 
 		fetch('http://localhost:5000/postClass', {
 		method: "POST",
@@ -23,15 +22,27 @@ const AddClass = () => {
 
 		console.log(data.className);
 
-	const formData = new FormData();
-	formData.append('image', data.fileUpload[0])
-	fetch(img_hosting_url,{
-		method:'POST',
-		body: formData
-	})
-	.then(res => res.json())
-	.then(imgResponse => {
-		console.log(imgResponse);
+	// const formData = new FormData();
+	// formData.append('image', data.fileUpload[0])
+	// fetch(img_hosting_url,{
+	// 	method:'POST',
+	// 	body: formData
+	// })
+	// .then(res => res.json())
+	// .then(imgResponse => {
+	// 	console.log(imgResponse);
+	// })
+
+	imageUpload(data.fileUpload)
+	.then(pic => {
+		const classData = {
+			image: pic.data.display_url,
+			host: {
+				name: user?.displayName,
+				image: user?.photoURL,
+				email: user?.email
+			}
+		}
 	})
 		}
 	return (

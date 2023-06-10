@@ -8,7 +8,7 @@ export const imageUpload = async image => {
 		method:'POST',
 		body: formData
 	})
-	const data = await response.json()
-	return data;
+	const pic = await response.json()
+	return pic;
 
 }

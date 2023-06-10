@@ -11,6 +11,8 @@ import ClassDetails from "../pages/classDetails/ClassDetails";
 import PrivateRoute from "../PrivateRouter/PrivateRouter";
 import DashboardLayout from "../pages/DashboardLayout/DashboardLayout";
 import AddClass from "../pages/AddClass/AddClass";
+import UserBooking from "../pages/UserBooking/UserBooking";
+import AllUser from "../pages/AllUser/AllUser";
 
 export  const router = createBrowserRouter([
 	{
@@ -45,6 +47,19 @@ export  const router = createBrowserRouter([
 	  {
 		path: '/dashboard',
 		element: <DashboardLayout></DashboardLayout>,
-		children: [{path: '/dashboard/add-class', element:<AddClass></AddClass>}]
-	}
+		children: [
+			{path: '/dashboard/add-class',
+			 element:<AddClass></AddClass>
+			},
+			{
+				path: '/dashboard/bookingClass',
+				element: <UserBooking></UserBooking>
+			},
+			{
+				path: '/dashboard/allUser',
+				element: <AllUser></AllUser>
+			}
+	]
+	},
+	
   ]);
