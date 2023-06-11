@@ -14,6 +14,7 @@ import AddClass from "../pages/AddClass/AddClass";
 import UserBooking from "../pages/UserBooking/UserBooking";
 import AllUser from "../pages/AllUser/AllUser";
 import ManageClasses from "../Admin/ManageClasses/ManageClasses";
+import AllClasses from "../AllClasses/AllClasses";
 
 export  const router = createBrowserRouter([
 	{
@@ -38,7 +39,10 @@ export  const router = createBrowserRouter([
 			loader: ({ params }) =>
           fetch(`http://localhost:5000/classDetails/${params.id}`),
 		},
-		
+		{
+			path: '/classes',
+			element: <AllClasses></AllClasses>
+		}
 	  ]
 	},
 	{

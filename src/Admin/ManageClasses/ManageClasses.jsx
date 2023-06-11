@@ -15,10 +15,10 @@ const ManageClasses = () => {
       .then((data) => setAllData(data));
   };
 
-  // handlePending
+  // handleDeny
 
-  const handleMakePending = (user) => {
-    fetch(`http://localhost:5000/class/pending/${user._id}`, {
+  const handleMakeDeny = (user) => {
+    fetch(`http://localhost:5000/class/deny/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -27,7 +27,7 @@ const ManageClasses = () => {
         if (data.modifiedCount) {
           dataRefresh();
           Swal.fire({
-            title: "This class is Pending",
+            title: "This class is deny",
             confirmButtonColor: "#3085d6",
             showCancelButton: false,
             confirmButtonText: "Ok",
@@ -117,31 +117,32 @@ const ManageClasses = () => {
                   : "No Status"}
               </th>
               <th>
-                {data.status === "pending" ? (
-                  <Button className=" ml-3 mb-2" disabled fullWidth>
-                    <Link>Pending</Link>
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => handleMakePending(data)}
-                    className="ml-3 mb-2"
-                    fullWidth
-                  >
-                    <Link>Make Pending</Link>
-                  </Button>
-                )}
+               
 
                 {data.status === "approve" ? (
-                  <Button className=" ml-3" disabled fullWidth>
+                  <Button className=" ml-3  mb-2" disabled fullWidth>
                     <Link>Approved</Link>
                   </Button>
                 ) : (
                   <Button
                     onClick={() => handleMakeApprove(data)}
-                    className="ml-3"
+                    className="ml-3 mb-2"
                     fullWidth
                   >
-                    <Link>Make Approved</Link>
+                    <Link>Approved</Link>
+                  </Button>
+                )}
+				 {data.status === "deny" ? (
+                  <Button className=" ml-3 bg-red-600" disabled fullWidth>
+                    <Link>deny</Link>
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => handleMakeDeny(data)}
+                    className="ml-3 bg-red-600 "
+                    fullWidth
+                  >
+                    <Link>Deny</Link>
                   </Button>
                 )}
               </th>

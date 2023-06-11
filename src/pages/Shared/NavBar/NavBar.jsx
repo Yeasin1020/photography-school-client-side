@@ -54,7 +54,7 @@ const NavBar = () => {
             <a>Instructors</a>
           </li>
           <li>
-            <a>Classes</a>
+            <Link to='/classes'>Classes</Link>
           </li>
           {user ? 
           <li>
