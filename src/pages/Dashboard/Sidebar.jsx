@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
 import { FcDvdLogo, FcSettings } from "react-icons/fc";
@@ -11,30 +11,27 @@ import {
   TabsBody,
   Tab,
   TabPanel,
+  Button,
 } from "@material-tailwind/react";
 import { DiTypo3 } from "react-icons/di";
 const Sidebar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
   //todo
 
   // const isAdmin = true;
-  const isInstructor = true;
-  // const  isUser = true;
-  const data = [
-    {
-      label: "Angular",
-      value: "angular",
-      desc: ``,
-    },
-    {
-      label: "Svelte",
-      value: "svelte",
-      desc: ``,
-    },
-  ];
 
+  // const  isUser = true;
+ 
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  
 
   const [isActive, setActive] = useState("false");
   const toggleHandler = (event) => {
@@ -117,28 +114,11 @@ const Sidebar = () => {
 
                   {/* Button */}
 
-                  <Tabs value="html">
-                    <TabsHeader>
-                      {data.map(({ label, value }) => (
-                        <Tab key={value} value={value}>
-                          {label}
-                        </Tab>
-                      ))}
-                    </TabsHeader>
-                    <TabsBody>
-                      {data.map(({ value, desc }) => (
-                        <TabPanel key={value} value={value}>
-                          {desc}
-                        </TabPanel>
-                      ))}
-                    </TabsBody>
-                  </Tabs>
+                  {users.map(us=><Button>{us.role ==="admin"?"Admin":us.role==="instructor"?"Instructor":"Student"}</Button>)}
                 </label>
-                {/* Menu Links */}
-                {/* {
-                 isAdmin ?? <></> 
-                } */}
-                {isInstructor ? (
+              
+                
+                {/* {users.role == "admin" ? (
                   <>
                     <NavLink
                       to="add-class"
@@ -180,7 +160,7 @@ const Sidebar = () => {
                       <span className="mx-4 font-medium">My Booking Class</span>
                     </NavLink>
                   </>
-                )}
+                )} */}
                 {/* {
                   isUser ?? <></>
                 } */}
