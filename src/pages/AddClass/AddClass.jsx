@@ -5,7 +5,6 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 
 const AddClass = () => {
-	const {user} = useContext(AuthContext)
 	
 	const onSubmit = data => {
 		
@@ -33,17 +32,17 @@ const AddClass = () => {
 	// 	console.log(imgResponse);
 	// })
 
-	imageUpload(data.fileUpload)
-	.then(pic => {
-		const classData = {
-			image: pic.data.display_url,
-			host: {
-				name: user?.displayName,
-				image: user?.photoURL,
-				email: user?.email
-			}
-		}
-	})
+	// imageUpload(data.fileUpload)
+	// .then(pic => {
+	// 	const classData = {
+	// 		image: pic.data.display_url,
+	// 		host: {
+	// 			name: user?.displayName,
+	// 			image: user?.photoURL,
+	// 			email: user?.email
+	// 		}
+	// 	}
+	// })
 		}
 	return (
 		<div>

@@ -13,6 +13,7 @@ import DashboardLayout from "../pages/DashboardLayout/DashboardLayout";
 import AddClass from "../pages/AddClass/AddClass";
 import UserBooking from "../pages/UserBooking/UserBooking";
 import AllUser from "../pages/AllUser/AllUser";
+import ManageClasses from "../Admin/ManageClasses/ManageClasses";
 
 export  const router = createBrowserRouter([
 	{
@@ -58,6 +59,10 @@ export  const router = createBrowserRouter([
 			{
 				path: '/dashboard/allUser',
 				element: <AllUser></AllUser>
+			},
+			{
+				path: '/dashboard/manageClasses',
+				element: <ManageClasses></ManageClasses>
 			}
 	]
 	},

@@ -15,23 +15,21 @@ import {
 } from "@material-tailwind/react";
 import { DiTypo3 } from "react-icons/di";
 const Sidebar = () => {
-
   const { user, logOut } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
-  }, []);
+  }, [user]);
   //todo
 
   // const isAdmin = true;
 
   // const  isUser = true;
- 
+
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
-  
 
   const [isActive, setActive] = useState("false");
   const toggleHandler = (event) => {
@@ -114,10 +112,84 @@ const Sidebar = () => {
 
                   {/* Button */}
 
-                  {users.map(us=><Button>{us.role ==="admin"?"Admin":us.role==="instructor"?"Instructor":"Student"}</Button>)}
+                  {users.map((us) => (
+                    <Button key={us._id}>
+                      {us.role === "admin"
+                        ? "Admin Dashboard"
+                        : us.role === "instructor"
+                        ? "Instructor Dashboard"
+                        : "Student Dashboard"}
+                    </Button>
+                  ))}
                 </label>
-              
-                
+
+                {users.map((u) => (
+                  <div key={u._id}>
+                    {u.role == "admin" ? (
+                      <>
+                        <NavLink
+                          to="allUser"
+                          className={({ isActive }) =>
+                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                              isActive
+                                ? "bg-gray-300  text-gray-700"
+                                : "text-gray-600"
+                            }`
+                          }
+                        >
+                          <span className="mx-4 font-medium">All User</span>
+                        </NavLink>
+                        <NavLink
+                          to="manageClasses"
+                          className={({ isActive }) =>
+                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                              isActive
+                                ? "bg-gray-300  text-gray-700"
+                                : "text-gray-600"
+                            }`
+                          }
+                        >
+                          <span className="mx-4 font-medium">
+                            Manage Classes
+                          </span>
+                        </NavLink>
+                      </>
+                    ) : (
+                      <>
+                        <>
+                          {/* for Admin */}
+                          <NavLink
+                            to="add-class"
+                            className={({ isActive }) =>
+                              `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                                isActive
+                                  ? "bg-gray-300  text-gray-700"
+                                  : "text-gray-600"
+                              }`
+                            }
+                          >
+                            <span className="mx-4 font-medium">Add Class</span>
+                          </NavLink>
+                        </>
+
+                        <NavLink
+                          to="bookingClass"
+                          className={({ isActive }) =>
+                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                              isActive
+                                ? "bg-gray-300  text-gray-700"
+                                : "text-gray-600"
+                            }`
+                          }
+                        >
+                          <span className="mx-4 font-medium">
+                            My Booking Class
+                          </span>
+                        </NavLink>
+                      </>
+                    )}
+                  </div>
+                ))}
                 {/* {users.role == "admin" ? (
                   <>
                     <NavLink

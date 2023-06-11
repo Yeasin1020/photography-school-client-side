@@ -9,10 +9,14 @@ import Swal from "sweetalert2";
 const AllUser = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+    dataReload()
   }, []);
+
+  const dataReload = () => {
+    fetch("http://localhost:5000/users")
+    .then((res) => res.json())
+    .then((data) => setUsers(data));
+  }
 
   //handle Make Admin
 
@@ -24,6 +28,7 @@ const AllUser = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
+          dataReload()
           Swal.fire({
             title: `${user.name} is now Admin`,
             confirmButtonColor: "#3085d6",
@@ -34,9 +39,9 @@ const AllUser = () => {
       });
   };
 
-   //handle Make instructor
+  //handle Make instructor
 
-   const handleMakeInstructor = (user) => {
+  const handleMakeInstructor = (user) => {
     fetch(`http://localhost:5000/users/instructor/${user._id}`, {
       method: "PATCH",
     })
@@ -61,11 +66,7 @@ const AllUser = () => {
           {/* head */}
           <thead className="text-white">
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
+              <th></th>
               <th>Name</th>
               <th>Email</th>
               <th>Current Role</th>
@@ -78,9 +79,6 @@ const AllUser = () => {
               <tr key={user._id}>
                 <th>
                   <td>{index + 1}</td>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
                 </th>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -98,32 +96,42 @@ const AllUser = () => {
                   </div>
                 </td>
                 <td>{user.email}</td>
-				
-                <td>
-				{
-					user.role === "admin" ? "Admin" : user.role === "instructor" ? "Instructor" : "Student"
-				}
-				</td>
-                <th className="flex">
-				{user.role === "admin" ? (
-                  <Button className="mt-4 ml-4" disabled fullWidth>
-                    <Link>Admin</Link>
-                  </Button>
-				):(
-                  <Button onClick={() => handleMakeAdmin(user)} className="ml-3 mt-4" fullWidth>
-                    <Link>Make Admin</Link>
-                  </Button>
-				    )}
 
-				{user.role === "instructor" ? (
-                  <Button className="mt-4 ml-4" disabled fullWidth>
-                    <Link>instructor</Link>
-                  </Button>
-				):(
-                  <Button onClick={() => handleMakeInstructor(user)} className="ml-3 mt-4" fullWidth>
-                    <Link>MakeInstructor</Link>
-                  </Button>
-				    )}
+                <td>
+                  {user.role === "admin"
+                    ? "Admin"
+                    : user.role === "instructor"
+                    ? "Instructor"
+                    : "Student"}
+                </td>
+                <th className="flex">
+                  {user.role === "admin" ? (
+                    <Button className=" ml-4" disabled fullWidth>
+                      <Link>Admin</Link>
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="ml-3 "
+                      fullWidth
+                    >
+                      <Link>Make Admin</Link>
+                    </Button>
+                  )}
+
+                  {user.role === "instructor" ? (
+                    <Button className=" ml-4" disabled fullWidth>
+                      <Link>instructor</Link>
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => handleMakeInstructor(user)}
+                      className="ml-3"
+                      fullWidth
+                    >
+                      <Link>MakeInstructor</Link>
+                    </Button>
+                  )}
                 </th>
               </tr>
             ))}
@@ -135,15 +143,3 @@ const AllUser = () => {
 };
 
 export default AllUser;
-
-{/* <div>
-  {user.role === "admin" ? (
-    <button className="btn btn-primary" disabled>
-      Admin
-    </button>
-  ) : (
-    <button onClick={() => handleMakeAdmin(user)} className="btn btn-primary">
-      Make Admin
-    </button>
-  )}
-</div>; */}
