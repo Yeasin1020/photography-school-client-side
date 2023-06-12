@@ -8,58 +8,45 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { saveUser } from "../../api/auth";
 
 const Register = () => {
-	const {createUser, loading, setLoading, googleSignIn} = useContext(AuthContext);
-
-
-	const [match, SetMatch] = useState([]);
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	  } = useForm();
 	
-	const { register, handleSubmit, watch, formState: { errors } } = useForm();
-	const onSubmit = data => {
-		if(  data.password !== data.confirmPassword){
-			SetMatch('Password did not match')
-			return
-		}
-		
-		SetMatch('')
-		
-		createUser(data.email, data.password, data.name, data.photo)
-		.then((result) => {
-			const createdUser = result.user;
-			console.log(createdUser);
-			if (createUser) {
+	  const { createUser, updateUserProfile } = useContext(AuthContext);
+	  const navigate = useNavigate();
+	
+	  const onSubmit = (data) => {
+		console.log(data);
+		createUser(data.email, data.password, data.confirm).then((result) => {
+		  const loggedUser = result.user;
+		  console.log(loggedUser);
+		  updateUserProfile(data.name, data.photo)
+			.then(() => {
+			  console.log("updated user profile");
+			  saveUser(result.user);
+			  reset();
 			  Swal.fire({
-				title: "Successfully signUp",
-				text: "Great",
+				position: "top-center",
 				icon: "success",
-				showCancelButton: false,
-				confirmButtonColor: "#3085d6",
-				
-				confirmButtonText: "Continue",
-			  }).then((result) => {
-				if (result.isConfirmed) {
-				  saveUser(result.user)
-				  window.location.assign("/");
-				}
+				title: "User Created Successful",
+				showConfirmButton: false,
+				timer: 1500,
 			  });
-			}
-		  })
-
-		  .catch((error) => {
-			setLoading(false)
-			console.log(error.massage);
-			
-		  });
-
-
-	
-	
-	};
+			  navigate("/");
+			})
+			.catch((error) => console.log(error));
+		});
+	  };
 		
   return (
     <div className="mt-10 mb-10 text-white flex mx-auto justify-center items-center">
@@ -87,15 +74,16 @@ const Register = () => {
 			{errors.password?.type === 'pattern' && <span className="text-red-500">Password must have One uppercase, One special character</span>}
 			
             <Input type="password" size="lg" {...register("confirmPassword", { required: true })} label="Confirm Password" />
-			{ <span className="text-red-500">{match}</span>}
+			{ <span className="text-red-500"></span>}
 			{errors.confirmPassword?.type === 'required' && <span className="text-red-500">This field is required</span>}
             <Input type="photoUrl" size="lg" {...register("photo", { required: true })} label="PhotoUrl" />
 			{errors.photo && <span className="text-red-500">This field is required</span>}
           </div>
          
           <Button type="submit" className="mt-6 cursor-pointer" fullWidth>
-			 {loading ? <ImSpinner3 className="m-auto animate-spin" size={24}></ImSpinner3>:'Register'}
-            
+			Register
+			 {/* {loading ? <ImSpinner3 className="m-auto animate-spin" size={24}></ImSpinner3>:'Register'}
+             */}
           </Button>
           <Typography color="white" className="mt-4 text-center font-normal">
             Already have an account?
@@ -114,3 +102,38 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+//  const {
+//     register,
+//     handleSubmit,
+//     reset,
+//     formState: { errors },
+//   } = useForm();
+
+//   const { createUser, updateUserProfile } = useContext(AuthContext);
+//   const navigate = useNavigate();
+
+//   const onSubmit = (data) => {
+//     console.log(data);
+//     createUser(data.email, data.password, data.confirm).then((result) => {
+//       const loggedUser = result.user;
+//       console.log(loggedUser);
+//       updateUserProfile(data.name, data.photo)
+//         .then(() => {
+//           console.log("updated user profile");
+//           saveUser(result.user);
+//           reset();
+//           Swal.fire({
+//             position: "top-center",
+//             icon: "success",
+//             title: "User Created Successful",
+//             showConfirmButton: false,
+//             timer: 1500,
+//           });
+//           navigate("/");
+//         })
+//         .catch((error) => console.log(error));
+//     });
+//   };
