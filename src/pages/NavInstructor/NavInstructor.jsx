@@ -23,6 +23,9 @@ import {
 	FireIcon,
   } from "@heroicons/react/24/solid";
 const NavInstructor = () => {
+	useEffect(()=> {
+        document.title = "Photography-School || Instructor"
+      },[])
 	const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {

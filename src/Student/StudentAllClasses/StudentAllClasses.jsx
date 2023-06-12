@@ -7,6 +7,9 @@ import { Button } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 
 const StudentAllClasses = () => {
+	useEffect(()=> {
+        document.title = "Photography-School || MyClass"
+      },[])
   const { user } = useContext(AuthContext);
   const [allData, setData] = useState([]);
   useEffect(() => {

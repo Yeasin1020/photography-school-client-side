@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
-import { FcDvdLogo, FcSettings } from "react-icons/fc";
+import { FcDvdLogo, FcHome, FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
 import { AuthContext } from "../../Provider/AuthProvider";
 
@@ -13,7 +13,6 @@ import {
   TabPanel,
   Button,
 } from "@material-tailwind/react";
-import { DiTypo3 } from "react-icons/di";
 const Sidebar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
@@ -70,7 +69,7 @@ const Sidebar = () => {
             <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
               <Link to="/">
                 {" "}
-                <DiTypo3 className="w-10 h-10"></DiTypo3>
+                <FcHome className="w-10 h-10"></FcHome>
               </Link>
             </div>
             <div className="flex flex-col items-center mt-6 -mx-2">
@@ -155,7 +154,7 @@ const Sidebar = () => {
                           </span>
                         </NavLink>
                       </>
-                    ) : u.roll === "instructor" ? (
+                    ) : 
                       <>
                         <>
                           {/* for Instructor */}
@@ -188,88 +187,43 @@ const Sidebar = () => {
                           </span>
                         </NavLink>
                       </>
-                    ) : (
-                      <>
-                        <>
-                          {/* for Instructor */}
-                          <NavLink
-                            to="/dashboard/SelectedClasses"
-                            className={({ isActive }) =>
-                              `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                                isActive
-                                  ? "bg-gray-300  text-gray-700"
-                                  : "text-gray-600"
-                              }`
-                            }
-                          >
-                            <span className="mx-4 font-medium">My Classes</span>
-                          </NavLink>
-                        </>
+                     
+                      // <>
+                      //   <>
+                      //     {/* for Instructor */}
+                      //     <NavLink
+                      //       to="/dashboard/SelectedClasses"
+                      //       className={({ isActive }) =>
+                      //         `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      //           isActive
+                      //             ? "bg-gray-300  text-gray-700"
+                      //             : "text-gray-600"
+                      //         }`
+                      //       }
+                      //     >
+                      //       <span className="mx-4 font-medium">My Classes</span>
+                      //     </NavLink>
+                      //   </>
 
-                        <NavLink
-                          to="bookingClass"
-                          className={({ isActive }) =>
-                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                              isActive
-                                ? "bg-gray-300  text-gray-700"
-                                : "text-gray-600"
-                            }`
-                          }
-                        >
-                          <span className="mx-4 font-medium">
-                            Enroll Class
-                          </span>
-                        </NavLink>
-                      </>
-                    )}
+                      //   <NavLink
+                      //     to="/bookingClass"
+                      //     className={({ isActive }) =>
+                      //       `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      //         isActive
+                      //           ? "bg-gray-300  text-gray-700"
+                      //           : "text-gray-600"
+                      //       }`
+                      //     }
+                      //   >
+                      //     <span className="mx-4 font-medium">
+                      //       Enroll Class
+                      //     </span>
+                      //   </NavLink>
+                      // </>
+                    }
                   </div>
                 ))}
-                {/* {users.role == "admin" ? (
-                  <>
-                    <NavLink
-                      to="add-class"
-                      className={({ isActive }) =>
-                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive
-                            ? "bg-gray-300  text-gray-700"
-                            : "text-gray-600"
-                        }`
-                      }
-                    >
-                      <span className="mx-4 font-medium">Add Class</span>
-                    </NavLink>
-                    <NavLink
-                      to="allUser"
-                      className={({ isActive }) =>
-                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive
-                            ? "bg-gray-300  text-gray-700"
-                            : "text-gray-600"
-                        }`
-                      }
-                    >
-                      <span className="mx-4 font-medium">All User</span>
-                    </NavLink>
-                  </>
-                ) : (
-                  <>
-                    <NavLink
-                      to="bookingClass"
-                      className={({ isActive }) =>
-                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive
-                            ? "bg-gray-300  text-gray-700"
-                            : "text-gray-600"
-                        }`
-                      }
-                    >
-                      <span className="mx-4 font-medium">My Booking Class</span>
-                    </NavLink>
-                  </>
-                )} */}
-                {/* {
-                  isUser ?? <></>
-                } */}
+               
               </>
             </nav>
           </div>

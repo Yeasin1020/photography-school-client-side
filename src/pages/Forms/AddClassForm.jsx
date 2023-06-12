@@ -1,42 +1,88 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../Provider/AuthProvider';
-import { useForm } from 'react-hook-form';
+import React, { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
+const AddClassForm = ({ onSubmit }) => {
+    useEffect(()=> {
+        document.title = "Photography-School || AddClassForm"
+      },[])
+  const { user } = useContext(AuthContext);
 
-const AddClassForm = ({onSubmit}) => {
-	const {user} = useContext(AuthContext)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-	const { register, handleSubmit, watch, formState: { errors } } = useForm();
-	
-
-	return (
-		<div>
-			<section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
-    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Add New Class</h1>
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+  return (
+    <div>
+      <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+        <h1 class="text-xl font-bold text-white capitalize dark:text-white">
+          Add New Class
+        </h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-                <label class="text-white dark:text-gray-200" for="username">Class Name</label>
-                <input id="username" type="text" {...register("className", { required: true })} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+              <label class="text-white dark:text-gray-200" for="username">
+                Class Name
+              </label>
+              <input
+                id="username"
+                type="text"
+                {...register("className", { required: true })}
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
             <div>
-                <label class="text-white dark:text-gray-200" for="Instructor">Instructor Name</label>
-                <input value={user?.displayName} {...register("instructorName")} id="instructorName" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+              <label class="text-white dark:text-gray-200" for="Instructor">
+                Instructor Name
+              </label>
+              <input
+                value={user?.displayName}
+                {...register("instructorName")}
+                id="instructorName"
+                type="text"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
 
             <div>
-                <label class="text-white dark:text-gray-200" for="emailAddress">Email Address</label>
-                <input value={user?.email} {...register("email")} id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+              <label class="text-white dark:text-gray-200" for="emailAddress">
+                Email Address
+              </label>
+              <input
+                value={user?.email}
+                {...register("email")}
+                id="emailAddress"
+                type="email"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
             <div>
-                <label class="text-white dark:text-gray-200" for="AvailableSeats">Available seats</label>
-                <input id="AvailableSeats" {...register("seats", { required: true })} type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+              <label class="text-white dark:text-gray-200" for="AvailableSeats">
+                Available seats
+              </label>
+              <input
+                id="AvailableSeats"
+                {...register("seats", { required: true })}
+                type="number"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
             <div>
-                <label class="text-white dark:text-gray-200" for="Price">Price</label>
-                <input id="Price" {...register("Price", { required: true })} type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+              <label class="text-white dark:text-gray-200" for="Price">
+                Price
+              </label>
+              <input
+                id="Price"
+                {...register("Price", { required: true })}
+                type="number"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
-           
+
             {/* <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Select</label>
                 <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
@@ -46,24 +92,65 @@ const AddClassForm = ({onSubmit}) => {
                     <option>Bandung</option>
                 </select>
             </div> */}
-            
+
             <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Date</label>
-                <input id="date" {...register("data")} type="date" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+              <label
+                class="text-white dark:text-gray-200"
+                for="passwordConfirmation"
+              >
+                Date
+              </label>
+              <input
+                id="date"
+                {...register("data")}
+                type="date"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
             <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Text Area</label>
-                <textarea id="textarea" {...register("textarea")} type="textarea" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
+              <label
+                class="text-white dark:text-gray-200"
+                for="passwordConfirmation"
+              >
+                Text Area
+              </label>
+              <textarea
+                id="textarea"
+                {...register("textarea")}
+                type="textarea"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              ></textarea>
             </div>
             <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Class Photo</label>
-                <input id="classPhoto" {...register("classPhoto")} type="URL" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+              <label
+                class="text-white dark:text-gray-200"
+                for="passwordConfirmation"
+              >
+                Class Photo
+              </label>
+              <input
+                id="classPhoto"
+                {...register("classPhoto")}
+                type="URL"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
-            <div className='hidden'>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Class Photo</label>
-                <input value="pending" id="text" {...register("status")} type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+            <div className="hidden">
+              <label
+                class="text-white dark:text-gray-200"
+                for="passwordConfirmation"
+              >
+                Class Photo
+              </label>
+              <input
+                value="pending"
+                id="text"
+                {...register("status")}
+                type="text"
+                class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              />
             </div>
-            
+
             {/* <div>
                 <label class="block text-sm font-medium text-white">
                Class Image
@@ -86,17 +173,17 @@ const AddClassForm = ({onSubmit}) => {
                 </div>
               </div>
             </div> */}
-        </div>
+          </div>
 
-        <div class="flex justify-end mt-6">
-            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
-        </div>
-    </form>
-</section>
-
- 
-		</div>
-	);
+          <div class="flex justify-end mt-6">
+            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">
+              Save
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  );
 };
 
 export default AddClassForm;

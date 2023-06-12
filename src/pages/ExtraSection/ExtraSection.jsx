@@ -2,6 +2,7 @@ import React from "react";
 import './ExtraSection.css'
 
 const ExtraSection = () => {
+	
   return (
     <div className="grid grid-cols-2"> 
       <div class="wrapper">

@@ -13,8 +13,12 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { saveUser } from "../../api/auth";
+import { useEffect } from "react";
 
 const Register = () => {
+	useEffect(()=> {
+        document.title = "Photography-School || Register"
+      },[])
 	const {
 		register,
 		handleSubmit,

@@ -20,29 +20,6 @@ const AddClass = () => {
 	})
 
 		console.log(data.className);
-
-	// const formData = new FormData();
-	// formData.append('image', data.fileUpload[0])
-	// fetch(img_hosting_url,{
-	// 	method:'POST',
-	// 	body: formData
-	// })
-	// .then(res => res.json())
-	// .then(imgResponse => {
-	// 	console.log(imgResponse);
-	// })
-
-	// imageUpload(data.fileUpload)
-	// .then(pic => {
-	// 	const classData = {
-	// 		image: pic.data.display_url,
-	// 		host: {
-	// 			name: user?.displayName,
-	// 			image: user?.photoURL,
-	// 			email: user?.email
-	// 		}
-	// 	}
-	// })
 		}
 	return (
 		<div>

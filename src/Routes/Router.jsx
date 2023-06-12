@@ -17,6 +17,7 @@ import ManageClasses from "../Admin/ManageClasses/ManageClasses";
 import AllClasses from "../AllClasses/AllClasses";
 import NavInstructor from "../pages/NavInstructor/NavInstructor";
 import StudentAllClasses from "../Student/StudentAllClasses/StudentAllClasses";
+import UpdateClass from "../pages/UpdateClass/UpdateClass";
 
 export  const router = createBrowserRouter([
 	{
@@ -77,6 +78,11 @@ export  const router = createBrowserRouter([
 			{
 				path: '/dashboard/SelectedClasses',
 				element: <StudentAllClasses></StudentAllClasses>
+			},
+			{
+				path: '/dashboard/updateClass/:id',
+				element: <UpdateClass></UpdateClass>,
+				loader: ({params}) => fetch(`http://localhost:5000/classDetails/${params.id}`)
 			}
 	]
 	},

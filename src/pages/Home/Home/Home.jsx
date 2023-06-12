@@ -3,8 +3,12 @@ import Slider from '../Slider/Slider';
 import PhotographyPopularCard from '../../PhotographyPopularCard/PhotographyPopularCard';
 import TopInstructor from '../../Instructor/TopInstructor';
 import ExtraSection from '../../ExtraSection/ExtraSection';
+import { useEffect } from 'react';
 
 const Home = () => {
+	useEffect(()=> {
+        document.title = "Photography-School || Home"
+      },[])
 	return (
 		<div>
 			<Slider></Slider>

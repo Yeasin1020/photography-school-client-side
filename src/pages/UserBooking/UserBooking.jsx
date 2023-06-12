@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Button } from "@material-tailwind/react";
+import { BiPencil } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const UserBooking = () => {
+  useEffect(()=> {
+    document.title = "Photography-School || UserBooking"
+  },[])
   const { user } = useContext(AuthContext);
   const [myClass, setMyClass] = useState([]);
-  
 
   useEffect(() => {
     fetch(`http://localhost:5000/classes/${user?.email}`)
@@ -22,8 +27,8 @@ const UserBooking = () => {
               <th>Name</th>
               <th>Instructor</th>
               <th>Status</th>
+              <th>Action</th>
               <th></th>
-              
             </tr>
           </thead>
           <tbody>
@@ -31,7 +36,7 @@ const UserBooking = () => {
             {myClass.map((cls, i) => (
               <tr key={cls._id}>
                 <th>
-                  <td>{i+1}</td>
+                  <td>{i + 1}</td>
                 </th>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -48,15 +53,18 @@ const UserBooking = () => {
                     </div>
                   </div>
                 </td>
-                <td>
-                 {cls.instructorName}
-                </td>
-                <td>
-				{cls.status}
-                </td>
-                
+                <td>{cls.instructorName}</td>
+                <td>{cls.status}</td>
+
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <Button className="m-3">Feedback</Button>
+                  <Link to={`/dashboard/updateClass/${cls._id}`}>
+                    <Button>
+                      <span className="flex">
+                        <BiPencil className="h-3 w-3 mr-2"></BiPencil>Update
+                      </span>
+                    </Button>
+                  </Link>
                 </th>
               </tr>
             ))}

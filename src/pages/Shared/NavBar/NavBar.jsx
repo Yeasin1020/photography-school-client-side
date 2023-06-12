@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { DiTypo3 } from "react-icons/di";
+import { GiEntangledTyphoon } from "react-icons/gi";
 import { Button } from "@material-tailwind/react";
 import { Avatar } from "@material-tailwind/react";
 
@@ -28,22 +28,22 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <a>Instructors</a>
-            </li>
-            <li>
-              <a>Classes</a>
-            </li>
-           {user? 
-             <li>
-             <Link>Dashboard</Link>
-           </li>: '' 
-          }
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/instructor">Instructors</Link>
+          </li>
+          <li>
+            <Link to='/classes'>Classes</Link>
+          </li>
+          {user ? 
+          <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>: ''  
+        }
           </ul>
         </div>
-        <DiTypo3 className="w-10 h-10"></DiTypo3>
+        <GiEntangledTyphoon className="w-10 h-10"></GiEntangledTyphoon>
         <a className="ml-5 font-bold normal-case text-xl">Photography School</a>
       </div>
       <div className="navbar-center hidden lg:flex">
