@@ -7,7 +7,7 @@ const ExtraSection = () => {
     <div className="grid grid-cols-2"> 
       <div class="wrapper">
         <div class="image-wrapper">
-          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1583&q=80" />
+          <img className="object-cover " src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1583&q=80" />
         </div>
         <div class="header-wrapper">
           <h1>Poster Art</h1>

@@ -24,7 +24,7 @@ const TopInstructor = () => {
     {
       instructor.map(ins => <div key={ins._id} className="flex space-x-6">
 			<div className="">
-      <img alt="" className="flex-1 flex-shrink-0 object-cover h-56 mb-4 w-[500px] bg-center rounded-sm dark:bg-gray-500" src={ins.photo} />
+      <img alt="" className="flex-1 flex-shrink-0 object-cover h-80 mb-4 w-[500px] bg-center rounded-sm dark:bg-gray-500" src={ins.photo} />
 				
       </div>
       <div className="flex flex-col">
