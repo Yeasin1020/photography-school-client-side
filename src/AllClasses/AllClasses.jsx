@@ -33,7 +33,7 @@ const AllClasses = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/classesApprove/approve")
+    fetch("https://photo-server-production.up.railway.app/classesApprove/approve")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -56,7 +56,7 @@ const AllClasses = () => {
     console.log(data);
 
 
-    fetch('http://localhost:5000/selected', {
+    fetch('https://photo-server-production.up.railway.app/selected', {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(data)
@@ -68,7 +68,7 @@ const AllClasses = () => {
 
 
 
-    // axios.post("http://localhost:5000/selected", data).then(function (result) {
+    // axios.post("https://photo-server-production.up.railway.app/selected", data).then(function (result) {
     //   console.log(result);
     //   if (result.insertedId) {
     //     Swal.fire({

@@ -26,7 +26,7 @@ const PhotographyPopularCard = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/classesApprove/approve")
+    fetch("https://photo-server-production.up.railway.app/classesApprove/approve")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);

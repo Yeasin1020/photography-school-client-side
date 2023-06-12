@@ -17,7 +17,7 @@ const StudentAllClasses = () => {
   }, []);
 
   const reload = () =>{
-	return  fetch(`http://localhost:5000/myClass/${user?.email}`)
+	return  fetch(`https://photo-server-production.up.railway.app/myClass/${user?.email}`)
 	.then((res) => res.json())
 	.then((data) => setData(data));
   }
@@ -39,7 +39,7 @@ const StudentAllClasses = () => {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      fetch(`http://localhost:5000/classDelete/${id}`, {
+      fetch(`https://photo-server-production.up.railway.app/classDelete/${id}`, {
         method: 'DELETE',
       })
       .then(res => res.json())

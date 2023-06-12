@@ -30,7 +30,7 @@ const NavInstructor = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/role/instructor")
+    fetch("https://photo-server-production.up.railway.app/role/instructor")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);

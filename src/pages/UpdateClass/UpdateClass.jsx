@@ -21,7 +21,7 @@ const UpdateClass = () => {
 		formState: { errors },
 	  } = useForm();
 	  const onSubmit = (data) => {
-		fetch(`http://localhost:5000/update/${_id}`, {
+		fetch(`https://photo-server-production.up.railway.app/update/${_id}`, {
 		  method: "PUT",
 		  headers: { "Content-Type": "application/json" },
 		  body: JSON.stringify(data),

@@ -15,7 +15,7 @@ const AllUser = () => {
   }, []);
 
   const dataReload = () => {
-    fetch("http://localhost:5000/users")
+    fetch("https://photo-server-production.up.railway.app/users")
     .then((res) => res.json())
     .then((data) => setUsers(data));
   }
@@ -23,7 +23,7 @@ const AllUser = () => {
   //handle Make Admin
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`https://photo-server-production.up.railway.app/users/admin/${user?._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -44,7 +44,7 @@ const AllUser = () => {
   //handle Make instructor
 
   const handleMakeInstructor = (user) => {
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+    fetch(`https://photo-server-production.up.railway.app/users/instructor/${user?._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())

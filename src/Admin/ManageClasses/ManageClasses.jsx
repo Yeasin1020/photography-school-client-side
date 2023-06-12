@@ -10,7 +10,7 @@ const ManageClasses = () => {
   }, []);
 
   const dataRefresh = () => {
-    fetch("http://localhost:5000/allClass")
+    fetch("https://photo-server-production.up.railway.app/allClass")
       .then((res) => res.json())
       .then((data) => setAllData(data));
   };
@@ -18,7 +18,7 @@ const ManageClasses = () => {
   // handleDeny
 
   const handleMakeDeny = (user) => {
-    fetch(`http://localhost:5000/class/deny/${user._id}`, {
+    fetch(`https://photo-server-production.up.railway.app/class/deny/${user?._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -39,7 +39,7 @@ const ManageClasses = () => {
   // handleApprove
 
   const handleMakeApprove = (user) => {
-    fetch(`http://localhost:5000/class/approve/${user._id}`, {
+    fetch(`https://photo-server-production.up.railway.app/class/approve/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())

@@ -9,7 +9,7 @@ const AddClass = () => {
 	const onSubmit = data => {
 		
 
-		fetch('http://localhost:5000/postClass', {
+		fetch('https://photo-server-production.up.railway.app/postClass', {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(data)

@@ -12,7 +12,7 @@ const UserBooking = () => {
   const [myClass, setMyClass] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/classes/${user?.email}`)
+    fetch(`https://photo-server-production.up.railway.app/classes/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyClass(data));
   });

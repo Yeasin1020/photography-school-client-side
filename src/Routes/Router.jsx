@@ -40,7 +40,7 @@ export  const router = createBrowserRouter([
 			path: '/classDetails/:id',
 			element: <PrivateRoute><ClassDetails></ClassDetails></PrivateRoute>,
 			loader: ({ params }) =>
-          fetch(`http://localhost:5000/classDetails/${params.id}`),
+          fetch(`https://photo-server-production.up.railway.app/classDetails/${params.id}`),
 		},
 		{
 			path: '/classes',
@@ -82,7 +82,7 @@ export  const router = createBrowserRouter([
 			{
 				path: '/dashboard/updateClass/:id',
 				element: <UpdateClass></UpdateClass>,
-				loader: ({params}) => fetch(`http://localhost:5000/classDetails/${params.id}`)
+				loader: ({params}) => fetch(`https://photo-server-production.up.railway.app/classDetails/${params.id}`)
 			}
 	]
 	},
