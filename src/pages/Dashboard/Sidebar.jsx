@@ -193,7 +193,7 @@ const Sidebar = () => {
                         <>
                           {/* for Instructor */}
                           <NavLink
-                            to="add-class"
+                            to="/dashboard/SelectedClasses"
                             className={({ isActive }) =>
                               `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                                 isActive
