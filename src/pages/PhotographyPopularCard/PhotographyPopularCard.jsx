@@ -26,7 +26,7 @@ const PhotographyPopularCard = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/allClass")
+    fetch("http://localhost:5000/classesApprove/approve")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -37,12 +37,11 @@ const PhotographyPopularCard = () => {
     return <Loader></Loader>;
   }
   return (
-    <div className="cursor-pointer  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {classes.map((c) => (
         
        <div className="mb-5">
-        {
-          c.status === 'approve' ? <Link to={`/classDetails/${c._id}`} key={c._id} className="cursor-pointer group">
+         <Link to={`/classDetails/${c._id}`} key={c._id} className="cursor-pointer group">
           <Card className="w-full max-w-[26rem] shadow-lg">
             <CardHeader floated={false} color="blue-gray">
               <img
@@ -82,8 +81,8 @@ const PhotographyPopularCard = () => {
             </CardBody>
             
           </Card>
-        </Link> : <></>
-        }
+        </Link>
+        
          
        </div>
       ))}

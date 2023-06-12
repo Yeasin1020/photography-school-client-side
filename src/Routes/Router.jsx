@@ -15,6 +15,7 @@ import UserBooking from "../pages/UserBooking/UserBooking";
 import AllUser from "../pages/AllUser/AllUser";
 import ManageClasses from "../Admin/ManageClasses/ManageClasses";
 import AllClasses from "../AllClasses/AllClasses";
+import NavInstructor from "../pages/NavInstructor/NavInstructor";
 
 export  const router = createBrowserRouter([
 	{
@@ -42,6 +43,10 @@ export  const router = createBrowserRouter([
 		{
 			path: '/classes',
 			element: <AllClasses></AllClasses>
+		},
+		{
+			path: '/instructor',
+			element: <NavInstructor></NavInstructor>
 		}
 	  ]
 	},
