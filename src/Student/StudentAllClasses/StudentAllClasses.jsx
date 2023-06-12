@@ -14,7 +14,7 @@ const StudentAllClasses = () => {
   }, []);
 
   const reload = () =>{
-	return  fetch(`http://localhost:5000/myClass/${user.email}`)
+	return  fetch(`http://localhost:5000/myClass/${user?.email}`)
 	.then((res) => res.json())
 	.then((data) => setData(data));
   }

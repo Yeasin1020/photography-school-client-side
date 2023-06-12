@@ -125,7 +125,7 @@ const Sidebar = () => {
 
                 {users.map((u) => (
                   <div key={u._id}>
-                    {u.role == "admin" ? (
+                    {u.role === "admin" ? (
                       <>
                         {/* For Admin */}
                         <NavLink
