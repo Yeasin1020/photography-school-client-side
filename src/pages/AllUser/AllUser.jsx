@@ -5,8 +5,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import Loader from "../Shared/Loader";
 
 const AllUser = () => {
+
   const [users, setUsers] = useState([]);
   useEffect(() => {
     dataReload()
@@ -49,6 +51,7 @@ const AllUser = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
+          dataReload()
           Swal.fire({
             title: `${user.name} is now instructor`,
             confirmButtonColor: "#3085d6",

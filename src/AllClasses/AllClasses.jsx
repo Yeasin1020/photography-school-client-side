@@ -23,8 +23,12 @@ import Loader from "../pages/Shared/Loader";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AllClasses = () => {
+  const {user} = useContext(AuthContext)
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -39,6 +43,44 @@ const AllClasses = () => {
   if (loading) {
     return <Loader></Loader>;
   }
+  const handleClass = (Class) => {
+    const data = {
+     name: Class.instructorName,
+     class_name: Class.className,
+      class_id: Class._id,
+      price: Class.Price,
+      photo: Class.classPhoto,
+      available_seats: Class.seats,
+      email: user?.email,
+    };
+    console.log(data);
+
+
+    fetch('http://localhost:5000/selected', {
+		method: "POST",
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify(data)
+	})
+	.then(res => res.json())
+	.then(result => {
+		console.log(result)
+	})
+
+
+
+    // axios.post("http://localhost:5000/selected", data).then(function (result) {
+    //   console.log(result);
+    //   if (result.insertedId) {
+    //     Swal.fire({
+    //       title: "Class Selected successfully",
+    //       confirmButtonColor: "#3085d6",
+    //       showCancelButton: false,
+    //       confirmButtonText: "Ok",
+    //     });
+    //   }
+    // });
+  };
+
   return (
     <div className="mt-10 mb-10">
       <div className="cursor-pointer  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -155,7 +197,7 @@ const AllClasses = () => {
                     </Typography>
                   </CardBody>
                   <CardFooter className="pt-3">
-                    <Button size="lg" fullWidth={true} >
+                    <Button onClick={()=> handleClass(c)} size="lg" fullWidth={true} >
                       Select Class
                     </Button>
                   </CardFooter>

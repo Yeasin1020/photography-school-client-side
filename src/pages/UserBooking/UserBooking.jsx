@@ -28,9 +28,11 @@ const UserBooking = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {myClass.map((cls) => (
+            {myClass.map((cls, i) => (
               <tr key={cls._id}>
-                <th></th>
+                <th>
+                  <td>{i+1}</td>
+                </th>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">

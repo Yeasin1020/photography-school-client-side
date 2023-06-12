@@ -80,9 +80,11 @@ const ManageClasses = () => {
         <tbody>
           {/* row 1 */}
 
-          {allData.map((data) => (
+          {allData.map((data, index) => (
             <tr key={data._id}>
-              <th></th>
+              <th>
+                <td>{index+1}</td>
+              </th>
               <td>
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
